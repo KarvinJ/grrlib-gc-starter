@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     const int SCREEN_HEIGHT = 480;
     const int SPEED = 10;
 
-    //loading fonts. 
+    // loading fonts.
     GRRLIB_texImg *tex_BMfont2 = GRRLIB_LoadTexture(BMfont2_png);
     // To indicate the font region to load.
     GRRLIB_InitTileSet(tex_BMfont2, 16, 16, 32);
@@ -47,32 +47,32 @@ int main(int argc, char **argv)
     {
         PAD_ScanPads(); // Scan the GameCube controllers
 
-        const u32 paddown = PAD_ButtonsDown(0);
-        const u32 padheld = PAD_ButtonsHeld(0);
+        const u32 padDown = PAD_ButtonsDown(0);
+        const u32 padHeld = PAD_ButtonsHeld(0);
 
         GRRLIB_FillScreen(GRRLIB_BLACK);
 
-            // displaying text with the loaded fonts.
+        // displaying text with the loaded fonts.
         GRRLIB_Printf(300, 25, tex_BMfont2, GRRLIB_WHITE, 1, "DEMO");
 
         // If [START/PAUSE] was pressed on the first GameCube controller, break out of the loop
-        if (paddown & PAD_BUTTON_START)
+        if (padDown & PAD_BUTTON_START)
         {
             break;
         }
-        if (padheld & PAD_BUTTON_LEFT && bounds.x > 0)
+        if (padHeld & PAD_BUTTON_LEFT && bounds.x > 0)
         {
             bounds.x -= SPEED;
         }
-        if (padheld & PAD_BUTTON_RIGHT && bounds.x < SCREEN_WIDHT - bounds.w)
+        if (padHeld & PAD_BUTTON_RIGHT && bounds.x < SCREEN_WIDHT - bounds.w)
         {
             bounds.x += SPEED;
         }
-        if (padheld & PAD_BUTTON_UP && bounds.y > 0)
+        if (padHeld & PAD_BUTTON_UP && bounds.y > 0)
         {
             bounds.y -= SPEED;
         }
-        if (padheld & PAD_BUTTON_DOWN && bounds.y < SCREEN_HEIGHT - bounds.h)
+        if (padHeld & PAD_BUTTON_DOWN && bounds.y < SCREEN_HEIGHT - bounds.h)
         {
             bounds.y += SPEED;
         }
@@ -86,7 +86,8 @@ int main(int argc, char **argv)
         GRRLIB_Render(); // Render the frame buffer to the TV
     }
 
-    GRRLIB_Exit(); // Be a good boy, clear the memory allocated by GRRLIB
+    GRRLIB_FreeTexture(tex_BMfont2); // Be a good boy, clear the memory allocated by GRRLIB
 
+    GRRLIB_Exit(); 
     exit(0); // Use exit() to exit a program, do not use 'return' from main()
 }
