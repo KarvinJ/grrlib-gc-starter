@@ -1,19 +1,12 @@
-/*===========================================
-        GRRLIB (GX Version)
-        - Template Code -
-
-        Minimum Code To Use GRRLIB
-============================================*/
 #include <grrlib.h>
-
 #include <stdlib.h>
 #include <ogc/pad.h>
 #include "BMfont2_png.h"
 // #include "alien_1_png.h"
 #include "test_jpg_jpg.h"
 
-#define GRRLIB_BLACK 0x000000FF
-#define GRRLIB_WHITE 0xFFFFFFFF
+#define BLACK 0x000000FF
+#define WHITE 0xFFFFFFFF
 
 typedef struct
 {
@@ -21,6 +14,7 @@ typedef struct
     float y;
     float w;
     float h;
+    unsigned int color;
 } Rectangle;
 
 int main(int argc, char **argv)
@@ -28,7 +22,7 @@ int main(int argc, char **argv)
     // Initialise the Graphics & Video subsystem
     GRRLIB_Init();
 
-    Rectangle bounds = {0, 0, 64, 64};
+    Rectangle bounds = {0, 0, 64, 64, WHITE};
 
     const int SCREEN_WIDHT = 640;
     const int SCREEN_HEIGHT = 480;
@@ -43,17 +37,17 @@ int main(int argc, char **argv)
     PAD_Init();
 
     // Loop forever
-    while (1)
+    while (true)
     {
         PAD_ScanPads(); // Scan the GameCube controllers
 
         const u32 padDown = PAD_ButtonsDown(0);
         const u32 padHeld = PAD_ButtonsHeld(0);
 
-        GRRLIB_FillScreen(GRRLIB_BLACK);
+        GRRLIB_FillScreen(BLACK);
 
         // displaying text with the loaded fonts.
-        GRRLIB_Printf(300, 25, tex_BMfont2, GRRLIB_WHITE, 1, "DEMO");
+        GRRLIB_Printf(300, 25, tex_BMfont2, WHITE, 1, "DEMO");
 
         // If [START/PAUSE] was pressed on the first GameCube controller, break out of the loop
         if (padDown & PAD_BUTTON_START)
@@ -81,7 +75,7 @@ int main(int argc, char **argv)
         // Place your drawing code here
         // ---------------------------------------------------------------------
 
-        GRRLIB_Rectangle(bounds.x, bounds.y, bounds.w, bounds.h, GRRLIB_WHITE, 1);
+        GRRLIB_Rectangle(bounds.x, bounds.y, bounds.w, bounds.h, bounds.color, 1);
 
         GRRLIB_Render(); // Render the frame buffer to the TV
     }
