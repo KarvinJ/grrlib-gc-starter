@@ -1,3 +1,4 @@
+/.vscode
 /build
 grrlib-gc-template.dol
 grrlib-gc-template.elf
