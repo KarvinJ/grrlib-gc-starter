@@ -1,6 +1,6 @@
 # GRRLIB GAMECUBE STARTER
 
-A Very simple Nintendo GameCube starter template.
+A Very simple Nintendo GameCube GRRLIB starter template.
 
 # Building
 
