@@ -43,7 +43,7 @@ bool hasCollision(Rectangle bounds, Rectangle ball)
 
 void update()
 {
-    const u32 padHeld = PAD_ButtonsHeld(0);
+    int padHeld = PAD_ButtonsHeld(0);
 
     if (padHeld & PAD_BUTTON_LEFT && player.x > 0)
     {
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 
         // read input of the first controller, if we want to have access
         // to other controls we change the index
-        const u32 padDown = PAD_ButtonsDown(0);
+        int padDown = PAD_ButtonsDown(0);
 
         // If A was pressed on the first GameCube controller, break out of the loop
         if (padDown & PAD_BUTTON_A)
