@@ -115,6 +115,8 @@ int main(int argc, char **argv)
     {
         PAD_ScanPads(); // Scan the GameCube controllers
 
+        // read input of the first controller, if we want to have access
+        // to other controls we change the index
         const u32 padDown = PAD_ButtonsDown(0);
 
         // If A was pressed on the first GameCube controller, break out of the loop
