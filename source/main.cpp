@@ -13,7 +13,6 @@
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
-const int PLAYER_SPEED = 10;
 
 bool isGamePaused;
 
@@ -26,16 +25,17 @@ typedef struct
     unsigned int color;
 } Rectangle;
 
-Rectangle player = {SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 - 32, 64, 64, WHITE};
-
+Rectangle player = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 64, 64, WHITE};
 Rectangle ball = {SCREEN_WIDTH / 2 + 100, SCREEN_HEIGHT / 2 - 32, 32, 32, WHITE};
+
+const int PLAYER_SPEED = 10;
 
 int ballVelocityX = 4;
 int ballVelocityY = 4;
 
 int score;
 
-bool hasCollision(Rectangle bounds, Rectangle ball)
+bool hasCollision(Rectangle &bounds, Rectangle &ball)
 {
     return bounds.x < ball.x + ball.w && bounds.x + bounds.w > ball.x &&
            bounds.y < ball.y + ball.h && bounds.y + bounds.h > ball.y;
