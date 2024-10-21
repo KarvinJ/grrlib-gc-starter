@@ -16,8 +16,7 @@ I built everything using Windows 10
 
 * Follow GRRLIB Repo instruction for the installation.
 
-* Clone this repo:  
-  `git clone https://github.com/KarvinJ/grrlib-gc-starter.git`
+* Clone this repo
 
 * `cd grrlib-gc-starter`
 * `make`
